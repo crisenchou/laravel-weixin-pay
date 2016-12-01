@@ -20,14 +20,5 @@
         "psr-0": {
             "crisen\\LaravelWeixinpay": "src/"
         }
-    },
-
-    "require": {
-        "crisen/laravel-weixinpay": "*"
-    },
-    
-    "require-dev": {
-        "crisen/laravel-weixinpay": "*"
-    }
-  
+    }  
 }
