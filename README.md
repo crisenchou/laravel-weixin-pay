@@ -1,8 +1,18 @@
-# laravel-weixinPay
-laravel weixin qrcode pay
+# crisen: WeixinPay
 
-Composer Configuration
+**WeixinPay driver for the crisen PHP payment processing library**
 
-Include the laravel-omnipay package as a dependency in your composer.json:
 
-"crisen/laravel-weixinPay": "*"
+## Installation
+
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
+
+```json
+{
+    "require": {
+        "crisen/laravel-weixinPay": "*"
+    }
+}
+```
+
