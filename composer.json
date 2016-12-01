@@ -1,5 +1,5 @@
 {
-    "name": "crisen/laravel-weixinPay",
+    "name": "crisen/laravel-weixin-pay",
     "type": "library",
     "description": "weixin qrcode pay for laravel",
     "keywords": [
@@ -7,7 +7,7 @@
         "微信支付",
         "扫码支付"
     ],
-    "homepage": "https://github.com/crisenchou/laravel-weixinPay",
+    "homepage": "https://github.com/crisenchou/laravel-weixin-pay",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "crisen/laravel-weixinPay": "*"
+        "crisen/laravel-weixin-pay": "*"
     }
   
 }
