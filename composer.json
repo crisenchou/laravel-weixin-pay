@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "crisen\\laravel-weixin-pay\\": "src/",
+            "crisen\\laravel-weixin-pay\\": "src/"
         }
     },
     "require": {
