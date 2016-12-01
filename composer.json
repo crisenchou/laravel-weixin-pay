@@ -12,10 +12,18 @@
     "authors": [
         {
             "name": "crisenchou",
-            "email": "269298762@qq.com"
+            "email": "crisen@crisen.org"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "crisen\\laravel-weixin-pay\\": "src/",
+        },
+    },
     "require": {
+        "crisen/laravel-weixin-pay": "*"
+    },
+    "require-dev": {
         "crisen/laravel-weixin-pay": "*"
     }
   
