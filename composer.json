@@ -1,0 +1,21 @@
+{
+    "name": "crisen/laravel-weixin-pay",
+    
+    
+    "type": "library",
+    "description": "weixin qrcode pay for laravel",
+    "keywords": [
+        "weixinpay",
+        "微信支付",
+        "扫码支付",
+    ],
+    "homepage": "https://github.com/crisenchou/laravel-weixinPay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "crisenchou",
+            "email": "269298762@qq.com"
+        }
+    ],
+    "require": {}
+}
