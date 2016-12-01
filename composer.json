@@ -1,7 +1,5 @@
 {
-    "name": "crisen/laravel-weixin-pay",
-    
-    
+    "name": "crisen/laravel-weixinPay",
     "type": "library",
     "description": "weixin qrcode pay for laravel",
     "keywords": [
@@ -17,5 +15,8 @@
             "email": "269298762@qq.com"
         }
     ],
-    "require": {}
+    "require": {
+        "crisen/laravel-weixinPay": "*"
+    }
+  
 }
