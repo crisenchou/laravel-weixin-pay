@@ -5,13 +5,13 @@
 
 ## Installation
 
-Weixinpay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+WeixinPay is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
 ```json
 {
     "require": {
-        "crisen/laravel-weixinPay": "*"
+        "crisen/laravel-weixin-pay": "*"
     }
 }
 ```
