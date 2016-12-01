@@ -5,7 +5,7 @@
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
+Weixinpay is installed via [Composer](http://getcomposer.org/). To install, simply add it
 to your `composer.json` file:
 
 ```json
