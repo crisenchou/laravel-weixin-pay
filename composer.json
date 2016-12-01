@@ -5,7 +5,7 @@
     "keywords": [
         "weixinpay",
         "微信支付",
-        "扫码支付",
+        "扫码支付"
     ],
     "homepage": "https://github.com/crisenchou/laravel-weixinPay",
     "license": "MIT",
