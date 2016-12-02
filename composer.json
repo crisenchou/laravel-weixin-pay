@@ -1,6 +1,5 @@
 {
     "name": "crisen/laravel-weixinpay",
-    "type": "library",
     "description": "weixin qrcode pay for laravel",
     "keywords": [
         "weixinpay",
@@ -20,5 +19,9 @@
         "psr-0": {
             "Crisen\\LaravelWeixinpay\\": "src/"
         }
-    }  
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "^4.0|^5.0"
+    }
 }
