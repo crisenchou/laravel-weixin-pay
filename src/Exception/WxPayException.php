@@ -6,7 +6,7 @@
  *
  */
 
-namespace crisen\weixinPay\Exception;
+namespace Crisen\LaravelWeixinpay\Exception;
 
 use Exception;
 

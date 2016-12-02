@@ -1,6 +1,6 @@
 <?php
 
-namespace crisen\weixinPay\Weixin;
+namespace Crisen\LaravelWeixinpay\Weixin;
 
 
 /**
