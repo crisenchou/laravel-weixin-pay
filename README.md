@@ -11,7 +11,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "crisen/laravel-weixinpay": "*"
+        "crisen/laravel-weixinpay": "dev-master"
     }
 }
 ```
