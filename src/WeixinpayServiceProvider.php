@@ -5,7 +5,7 @@ namespace Crisen\LaravelWeixinpay;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelWeixinpayServiceProvider extends ServiceProvider
+class WeixinpayServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
