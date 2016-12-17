@@ -255,6 +255,17 @@ abstract class WxpayDataBase
     }
 
 
+    public function options($options = [])
+    {
+        if (is_array($options)) {
+            foreach ($options as $key => $val) {
+                $this->setValue($key, $val);
+            }
+        }
+        return $this;
+    }
+
+
     protected function throwException($message)
     {
         throw new WxpayException($message);

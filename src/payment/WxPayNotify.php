@@ -3,6 +3,8 @@
 namespace Crisen\LaravelWeixinpay\payment;
 
 
+use Illuminate\Http\Request;
+
 /**
  *
  * 回调基础类
@@ -12,10 +14,56 @@ namespace Crisen\LaravelWeixinpay\payment;
 class WxpayNotifyReply extends WxpayDataBase
 {
 
+    public $request;
 
     public function checkParams()
     {
+        //
+    }
 
+
+    public function options(Request $request)
+    {
+        $xml = $request->getContent();
+        libxml_disable_entity_loader(true);
+        $result = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        $this->request = $result;
+        return $this;
+    }
+
+
+    public function isSuccessful()
+    {
+        if (isset($this->request['return_code']) && 'SUCCESS' == $this->request['return_code']) {
+            return true;
+        } else {
+            info('notify error');
+            return false;
+        }
+
+    }
+
+
+    public function isPaid()
+    {
+        if ('SUCCESS' == $this->request['result_code']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getOutTradeNo()
+    {
+        return $this->request['out_trade_no'];
+    }
+
+
+    public function reply()
+    {
+        $this->setValue('return_code', 'SUCCESS');
+        $this->setValue('return_msg', 'SUCCESS');
+        return $this->ToXml();
     }
 
     /**
@@ -56,16 +104,5 @@ class WxpayNotifyReply extends WxpayDataBase
     public function GetReturn_msg()
     {
         return $this->values['return_msg'];
-    }
-
-    /**
-     *
-     * 设置返回参数
-     * @param string $key
-     * @param string $value
-     */
-    public function SetData($key, $value)
-    {
-        $this->values[$key] = $value;
     }
 }

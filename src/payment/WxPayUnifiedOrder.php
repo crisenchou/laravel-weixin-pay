@@ -12,6 +12,8 @@ namespace Crisen\LaravelWeixinpay\payment;
 class WxpayUnifiedOrder extends WxpayDataBase
 {
 
+    public $request;
+
     private $needle = [
         'appid',
         'mch_id',
@@ -54,16 +56,6 @@ class WxpayUnifiedOrder extends WxpayDataBase
         }
     }
 
-    public function options($options = [])
-    {
-        if (is_array($options)) {
-            foreach ($options as $key => $val) {
-                $this->setValue($key, $val);
-            }
-        }
-        return $this;
-    }
-
     //获取支付url
     public function send()
     {
@@ -73,10 +65,25 @@ class WxpayUnifiedOrder extends WxpayDataBase
         $response = $this->postXmlCurl($xml, $this->url, false);
         $this->FromXml($response);
         if ($this->values['return_code'] != 'SUCCESS') {
-            return $this->getValue();
+            info('pay error');
         } else {
             $this->CheckSign();
-            return $this->getValue();
+            $this->request = $this->getValue();
         }
+        return $this;
+    }
+
+
+    public function isSuccessful()
+    {
+        if ('SUCCESS' == $this->request['result_code'] && 'SUCCESS' == $this->request['return_code']) {
+            return true;
+        }
+        return false;
+    }
+
+    public function getCodeUrl()
+    {
+        return $this->request['code_url'];
     }
 }
