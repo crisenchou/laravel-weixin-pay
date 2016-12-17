@@ -10,7 +10,7 @@ namespace Crisen\LaravelWeixinpay\Exception;
 
 use Exception;
 
-class WxPayException extends Exception
+class WxpayException extends Exception
 {
     public function errorMessage()
     {

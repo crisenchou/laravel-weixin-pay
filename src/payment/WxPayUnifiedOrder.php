@@ -9,7 +9,7 @@ namespace Crisen\LaravelWeixinpay\payment;
  * @author widyhu
  *
  */
-class WxPayUnifiedOrder extends WxPayDataBase
+class WxpayUnifiedOrder extends WxpayDataBase
 {
 
     private $needle = [

@@ -3,7 +3,7 @@
 namespace Crisen\LaravelWeixinpay\payment;
 
 
-use Crisen\LaravelWeixinpay\Exception\WeixinPayException;
+use Crisen\LaravelWeixinpay\Exception\WxpayException;
 
 /**
  *
@@ -12,7 +12,7 @@ use Crisen\LaravelWeixinpay\Exception\WeixinPayException;
  * @author widyhu
  *
  */
-abstract class WxPayDataBase
+abstract class WxpayDataBase
 {
     protected $values = array();
     protected $key;
@@ -47,7 +47,7 @@ abstract class WxPayDataBase
         if (isset($this->$key)) {
             $this->$key = $value;
         } else {
-            throw new WeixinPayException("禁止设置该数据");
+            throw new WxpayException("禁止设置该数据");
         }
     }
 
@@ -132,7 +132,7 @@ abstract class WxPayDataBase
         if (!is_array($this->values)
             || count($this->values) <= 0
         ) {
-            throw new WeixinPayException("数组数据异常！");
+            throw new WxpayException("数组数据异常！");
         }
 
         $xml = "<xml>";
@@ -155,7 +155,7 @@ abstract class WxPayDataBase
     public function FromXml($xml)
     {
         if (!$xml) {
-            throw new WeixinPayException("xml数据异常！");
+            throw new WxpayException("xml数据异常！");
         }
         //将XML转为array
         //禁止引用外部xml实体
@@ -238,20 +238,10 @@ abstract class WxPayDataBase
         //要求结果为字符串且输出到屏幕上
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-//        if ($useCert == true) {
-//            //设置证书
-//            //使用证书：cert 与 key 分别属于两个.pem文件
-//            curl_setopt($ch, CURLOPT_SSLCERTTYPE, 'PEM');
-//            curl_setopt($ch, CURLOPT_SSLCERT, WeixinPayConfig::SSLCERT_PATH);
-//            curl_setopt($ch, CURLOPT_SSLKEYTYPE, 'PEM');
-//            curl_setopt($ch, CURLOPT_SSLKEY, WeixinPayConfig::SSLKEY_PATH);
-//        }
-
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
         //运行curl
         $data = curl_exec($ch);
-
 
         //返回结果
         if ($data) {
@@ -260,13 +250,13 @@ abstract class WxPayDataBase
         } else {
             $error = curl_errno($ch);
             curl_close($ch);
-            throw new WeixinPayException("curl出错，错误码:$error");
+            throw new WxpayException("curl出错，错误码:$error");
         }
     }
 
 
     protected function throwException($message)
     {
-        throw new WeixinPayException($message);
+        throw new WxpayException($message);
     }
 }
