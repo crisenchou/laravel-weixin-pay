@@ -1,18 +1,88 @@
-# crisen: WeixinPay
+# laravel -Weixinpay 微信支付
 
-**WeixinPay driver for the crisen PHP payment processing library**
+> 微信支付  目前只有扫码支付 持续完善中
 
+## 安装
 
-## Installation
+> 使用composer require命令进行安装
 
-WeixinPay is installed via [Composer](http://getcomposer.org/). To install, simply add it
-to your `composer.json` file:
+~~~
+composer require "crisen/laravel-weixinpay":"dev-master"
+~~~
 
-```json
-{
-    "require": {
+> 或者在composer.json中添加
+
+~~~
+"require": {
+		....
         "crisen/laravel-weixinpay": "dev-master"
-    }
-}
-```
+ },
+~~~
 
+## 配置
+
+> 注册服务提供者(Service Provider)
+
+~~~
+'providers' => [  
+    ...
+    Crisen\LaravelWeixinpay\WxpayServiceProvider::class,
+}
+~~~
+
+> 添加门面(Facade)
+
+~~~
+'aliases' => [
+    ...
+	'Wxpay' => Crisen\LaravelWeixinpay\Facades\Wxpay::class
+]
+~~~
+
+> 配置文件部署
+
+~~~
+php artisan vendor publish
+~~~
+
+## 使用方法
+
+#### 统一下单--扫码支付
+
+~~~
+  $wxpay = Wxpay::factory('UnifiedOrder');
+  $payment = $wxpay->options([
+      'body' => $order->body,
+       'out_trade_no' => $order->orderid,
+       'total_fee' => 1
+  ])->send();
+  if ($payment->isSuccessful()) {
+     dump($payment->getCodeUrl());
+  }
+~~~
+
+### 订单查询
+
+~~~
+   $pay = Wxpay::factory('OrderQuery')->options([
+       'out_trade_no' => 'xxxxxxx'//订单号
+   ])->send();
+   if ($pay->isSuccessful() && $pay->isPaid()) {
+       //do something
+   }
+~~~
+
+### 异步通知
+
+~~~
+	$payment = Wxpay::factory('notify')->options($request);
+	if ($payment->isSuccessful()) {
+        //$outTradeNo = $payment->getOutTradeNo(); //do something with $outTradeNo
+        $reply = $payment->reply();
+        return response($reply);
+    }
+~~~
+
+## License
+
+MIT
