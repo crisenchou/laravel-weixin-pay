@@ -50,8 +50,8 @@ php artisan vendor publish
 #### 统一下单--扫码支付
 
 ~~~
- $wxpay = Wxpay::factory('UnifiedOrder');
- $payment = $wxpay->options([
+ $pay = Wxpay::factory('UnifiedOrder');
+ $payment = $pay->options([
      'body' => $order->body,
      'out_trade_no' => $order->orderid,
      'total_fee' => 1
@@ -64,10 +64,10 @@ php artisan vendor publish
 ### 订单查询
 
 ~~~
-   $pay = Wxpay::factory('OrderQuery')->options([
+   $payment = Wxpay::factory('OrderQuery')->options([
        'out_trade_no' => 'xxxxxxx'//订单号
    ])->send();
-   if ($pay->isSuccessful() && $pay->isPaid()) {
+   if ($payment->isSuccessful() && $payment->isPaid()) {
        //do something
    }
 ~~~
