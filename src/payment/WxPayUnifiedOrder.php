@@ -64,11 +64,10 @@ class WxpayUnifiedOrder extends WxpayDataBase
         $xml = $this->ToXml();
         $response = $this->postXmlCurl($xml, $this->url, false);
         $this->FromXml($response);
-        if ($this->values['return_code'] != 'SUCCESS') {
-            info('pay error');
-        } else {
-            $this->CheckSign();
+        if ($this->values['return_code'] == 'SUCCESS') {
             $this->request = $this->getValue();
+        } else {
+            $this->throwException('sign error');
         }
         return $this;
     }

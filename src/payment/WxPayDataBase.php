@@ -73,9 +73,6 @@ abstract class WxpayDataBase
     }
 
 
-    abstract function checkParams();
-
-
     /**
      * 设置签名，详见签名生成算法
      * @param string $value
@@ -96,36 +93,46 @@ abstract class WxpayDataBase
         return $this->values['sign'];
     }
 
-    /**
-     * 判断签名，详见签名生成算法是否存在
-     * @return true 或 false
-     **/
-    public function IsSignSet()
-    {
-        return array_key_exists('sign', $this->values);
-    }
 
     /**
      *
      * 检测签名
      */
-    public function CheckSign()
+//    public function CheckSign()
+//    {
+//        if (!$this->IsSignSet()) {
+//            $this->throwException("签名错误！");
+//        }
+//
+//        $sign = $this->MakeSign();
+//        if ($this->GetSign() == $sign) {
+//            return true;
+//        }
+//        $this->throwException("签名错误！");
+//    }
+
+
+    protected function checkSign()
     {
-        if (!$this->IsSignSet()) {
-            $this->throwException("签名错误！");
+        if (!$this->isExist('sign')) {
+            info('sign is not exist');
+            return false;
         }
 
-        $sign = $this->MakeSign();
-        if ($this->GetSign() == $sign) {
+        $sign = $this->getValue('sign');
+        unset($this->getValue['sign']);
+        if ($sign == $this->MakeSign()) {
             return true;
+        } else {
+            info('sign error');
+            return false;
         }
-        $this->throwException("签名错误！");
     }
 
 
     /**
      * 输出xml字符
-     * @throws WeixinPayException
+     * @throws WxpayException
      **/
     public function ToXml()
     {
@@ -150,7 +157,7 @@ abstract class WxpayDataBase
     /**
      * 将xml转为array
      * @param string $xml
-     * @throws WeixinPayException
+     * @throws WxpayException
      */
     public function FromXml($xml)
     {
