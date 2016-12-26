@@ -42,7 +42,7 @@ composer require "crisen/laravel-weixinpay":"dev-master"
 > 配置文件部署
 
 ~~~
-php artisan vendor publish
+php artisan vendor:publish
 ~~~
 
 ## 使用方法
