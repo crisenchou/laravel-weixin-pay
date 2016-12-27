@@ -5,12 +5,10 @@ namespace Crisen\LaravelWeixinpay\payment;
 
 use Illuminate\Http\Request;
 
-/**
- *
- * 回调基础类
- * @author widyhu
- *
- */
+
+
+
+
 class WxpayNotifyReply extends WxpayDataBase
 {
 
@@ -28,10 +26,8 @@ class WxpayNotifyReply extends WxpayDataBase
         if (isset($this->values['return_code']) && 'SUCCESS' == $this->values['return_code']) {
             return true;
         } else {
-            info('notify error');
             return false;
         }
-
     }
 
 
@@ -60,7 +56,6 @@ class WxpayNotifyReply extends WxpayDataBase
         $reply = new WxpayReply();
         $reply->setValue('return_code', 'SUCCESS');
         $reply->setValue('return_msg', 'SUCCESS');
-        info('weixin reply message' . json_encode($this->values));
         return $reply->ToXml();
     }
 }

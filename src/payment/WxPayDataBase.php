@@ -5,13 +5,9 @@ namespace Crisen\LaravelWeixinpay\payment;
 
 use Crisen\LaravelWeixinpay\Exception\WxpayException;
 
-/**
- *
- * 数据对象基础类，该类中定义数据类最基本的行为，包括：
- * 计算/设置/获取签名、输出xml格式的参数、从xml读取数据对象等
- * @author widyhu
- *
- */
+
+
+
 abstract class WxpayDataBase
 {
     protected $values = array();
@@ -20,6 +16,8 @@ abstract class WxpayDataBase
     protected $mchid;
     protected $url;
     protected $notify_url;
+
+
 
     public function __construct()
     {
@@ -73,10 +71,7 @@ abstract class WxpayDataBase
     }
 
 
-    /**
-     * 设置签名，详见签名生成算法
-     * @param string $value
-     **/
+
     public function SetSign()
     {
         $sign = $this->MakeSign();
@@ -84,32 +79,10 @@ abstract class WxpayDataBase
         return $sign;
     }
 
-    /**
-     * 获取签名，详见签名生成算法的值
-     * @return 值
-     **/
     public function GetSign()
     {
         return $this->values['sign'];
     }
-
-
-    /**
-     *
-     * 检测签名
-     */
-//    public function CheckSign()
-//    {
-//        if (!$this->IsSignSet()) {
-//            $this->throwException("签名错误！");
-//        }
-//
-//        $sign = $this->MakeSign();
-//        if ($this->GetSign() == $sign) {
-//            return true;
-//        }
-//        $this->throwException("签名错误！");
-//    }
 
 
     protected function checkSign()
@@ -130,10 +103,7 @@ abstract class WxpayDataBase
     }
 
 
-    /**
-     * 输出xml字符
-     * @throws WxpayException
-     **/
+
     public function ToXml()
     {
         if (!is_array($this->values)
@@ -154,26 +124,19 @@ abstract class WxpayDataBase
         return $xml;
     }
 
-    /**
-     * 将xml转为array
-     * @param string $xml
-     * @throws WxpayException
-     */
+
     public function FromXml($xml)
     {
         if (!$xml) {
             throw new WxpayException("xml数据异常！");
         }
-        //将XML转为array
         //禁止引用外部xml实体
         libxml_disable_entity_loader(true);
         $this->values = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
         return $this->values;
     }
 
-    /**
-     * 格式化参数格式化成url参数
-     */
+
     public function ToUrlParams()
     {
         $buff = "";
@@ -187,10 +150,7 @@ abstract class WxpayDataBase
         return $buff;
     }
 
-    /**
-     * 生成签名
-     * @return 签名，本函数不覆盖sign成员变量，如要设置签名需要调用SetSign方法赋值
-     */
+
     public function MakeSign()
     {
         //签名步骤一：按字典序排序参数
@@ -205,12 +165,7 @@ abstract class WxpayDataBase
         return $result;
     }
 
-    /**
-     *
-     * 产生随机字符串，不长于32位
-     * @param int $length
-     * @return string $str
-     */
+
     public static function getNonceStr($length = 32)
     {
         $chars = "abcdefghijklmnopqrstuvWeixinyz0123456789";
@@ -222,15 +177,7 @@ abstract class WxpayDataBase
     }
 
 
-    /**
-     * 以post方式提交xml到对应的接口url
-     *
-     * @param string $xml 需要post的xml数据
-     * @param string $url url
-     * @param bool $useCert 是否需要证书，默认不需要
-     * @param int $second url执行超时时间，默认30s
-     * @throws WeixinPayException
-     */
+
     protected function postXmlCurl($xml, $url, $useCert = false, $second = 30)
     {
         $ch = curl_init();

@@ -3,12 +3,6 @@
 namespace Crisen\LaravelWeixinpay\payment;
 
 
-/**
- *
- * 统一下单输入对象
- * @author widyhu
- *
- */
 class WxpayUnifiedOrder extends WxpayDataBase
 {
 
@@ -33,7 +27,7 @@ class WxpayUnifiedOrder extends WxpayDataBase
         $this->setValue('mch_id', $this->mchid);
         $this->url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
         $this->setValue('nonce_str', $this->getNonceStr());
-        $this->setValue('spbill_create_ip', $_SERVER['REMOTE_ADDR']);
+        $this->setValue('spbill_create_ip', \Request::ip());
         $this->setValue('notify_url', $this->notify_url);
         $this->setValue('trade_type', 'NATIVE');
         $this->setValue('product_id', time());
