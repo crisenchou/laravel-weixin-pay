@@ -6,8 +6,6 @@ namespace Crisen\LaravelWeixinpay\payment;
 use Crisen\LaravelWeixinpay\Exception\WxpayException;
 
 
-
-
 abstract class WxpayDataBase
 {
     protected $values = array();
@@ -16,7 +14,6 @@ abstract class WxpayDataBase
     protected $mchid;
     protected $url;
     protected $notify_url;
-
 
 
     public function __construct()
@@ -71,7 +68,6 @@ abstract class WxpayDataBase
     }
 
 
-
     public function SetSign()
     {
         $sign = $this->MakeSign();
@@ -88,8 +84,7 @@ abstract class WxpayDataBase
     protected function checkSign()
     {
         if (!$this->isExist('sign')) {
-            info('sign is not exist');
-            return false;
+            throw new WxpayException("签名不存在！");
         }
 
         $sign = $this->getValue('sign');
@@ -97,11 +92,9 @@ abstract class WxpayDataBase
         if ($sign == $this->MakeSign()) {
             return true;
         } else {
-            info('sign error');
-            return false;
+            throw new WxpayException("签名错误！");
         }
     }
-
 
 
     public function ToXml()
@@ -175,7 +168,6 @@ abstract class WxpayDataBase
         }
         return $str;
     }
-
 
 
     protected function postXmlCurl($xml, $url, $useCert = false, $second = 30)
