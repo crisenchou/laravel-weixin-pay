@@ -18,7 +18,7 @@ abstract class WxpayDataBase
 
     public function __construct()
     {
-        $config = include __DIR__ . '/../config/weixinpay.php';
+        $config = config('weixinpay');
         $this->key = $config['key'];
         $this->appid = $config['appid'];
         $this->mchid = $config['mch_id'];
