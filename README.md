@@ -15,7 +15,7 @@ composer require "crisen/laravel-weixinpay":"dev-master"
 ~~~
 "require": {
 		....
-        "crisen/laravel-weixinpay": "dev-master"
+        "crisen/laravel-weixinpay": "~1.0*"
  },
 ~~~
 
