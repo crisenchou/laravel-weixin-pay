@@ -4,7 +4,7 @@
 namespace Crisen\LaravelWeixinpay\payment;
 
 
-class WxpayReply extends WxpayDataBase
+class Reply extends DataBase
 {
     
   

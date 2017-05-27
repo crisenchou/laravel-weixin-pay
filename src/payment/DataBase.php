@@ -6,7 +6,7 @@ namespace Crisen\LaravelWeixinpay\payment;
 use Crisen\LaravelWeixinpay\Exception\WxpayException;
 
 
-abstract class WxpayDataBase
+abstract class DataBase
 {
     protected $values = array();
     protected $key;
@@ -14,6 +14,7 @@ abstract class WxpayDataBase
     protected $mchid;
     protected $url;
     protected $notify_url;
+    protected $appsecret;
 
 
     public function __construct()
@@ -23,6 +24,7 @@ abstract class WxpayDataBase
         $this->appid = $config['appid'];
         $this->mchid = $config['mch_id'];
         $this->notify_url = $config['notifyUrl'];
+        $this->appsecret = $config['appsecret'];
         $this->init();
     }
 

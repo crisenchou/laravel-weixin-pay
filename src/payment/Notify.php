@@ -6,10 +6,7 @@ namespace Crisen\LaravelWeixinpay\payment;
 use Illuminate\Http\Request;
 
 
-
-
-
-class WxpayNotifyReply extends WxpayDataBase
+class Notify extends DataBase
 {
 
 

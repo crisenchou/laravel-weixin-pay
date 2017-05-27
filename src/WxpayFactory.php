@@ -8,7 +8,7 @@ class WxpayFactory
 
     public static function factory($gateway)
     {
-        $className = 'Crisen\LaravelWeixinpay\payment\Wxpay' . ucfirst($gateway);
+        $className = 'Crisen\LaravelWeixinpay\payment\\' . ucfirst($gateway);
         if (class_exists($className)) {
             return new $className;
         } else {

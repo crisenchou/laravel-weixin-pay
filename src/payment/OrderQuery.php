@@ -3,7 +3,7 @@
 namespace Crisen\LaravelWeixinpay\payment;
 
 
-class WxpayOrderQuery extends WxpayDataBase
+class OrderQuery extends DataBase
 {
 
     public $request;
