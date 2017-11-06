@@ -7,7 +7,7 @@
 > 使用composer require命令进行安装
 
 ~~~
-composer require "crisen/laravel-weixinpay":"v1.0.*"
+composer require "crisen/laravel-weixinpay":"1.0.*"
 ~~~
 
 > 或者在composer.json中添加
@@ -15,7 +15,7 @@ composer require "crisen/laravel-weixinpay":"v1.0.*"
 ~~~
 "require": {
 		....
-        "crisen/laravel-weixinpay": "v1.0.*"
+        "crisen/laravel-weixinpay": "1.0.*"
  },
 ~~~
 
